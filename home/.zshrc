@@ -48,7 +48,3 @@ bindkey -v
 
 bindkey '^R' history-incremental-pattern-search-backward
 
-# Customize to your needs...
-export PATH=$PATH:/home/pweir/.local/bin:/home/pweir/.cabal/bin:/home/pweir/Work/IMPPACT-RFA/numa-rfa-v10/bin:/opt/ThirdParty-2.2.0/platforms/linux64Gcc/gperftools-svn/bin:/usr/bin:/home/pweir/OpenFOAM/pweir-2.2.0/platforms/linux64GccDPOpt/bin:/opt/site/2.2.0/platforms/linux64GccDPOpt/bin:/opt/openfoam220/platforms/linux64GccDPOpt/bin:/opt/openfoam220/bin:/opt/openfoam220/wmake:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/sbin:/bin:/usr/games:/usr/local/games
-
-source /home/pweir/Code/FEniCS/share/fenics/fenics.conf
