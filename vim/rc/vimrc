@@ -1,0 +1,24 @@
+execute pathogen#infect()
+syntax on
+filetype plugin indent on
+let mapleader = ","
+
+au BufNewFile,BufRead *.src set filetype=fortran
+hi link fortranTab NONE
+
+let Tlist_Ctags_Cmd = "/usr/bin/ctags"
+let Tlist_WinWidth = 50
+map <F4> :TlistToggle<cr>
+
+set tabstop=8
+set shiftwidth=4
+set expandtab
+set undofile
+
+colo elflord
+
+let g:GasketOnEnter=1
+
+python from powerline.vim import setup as powerline_setup
+python powerline_setup()
+python del powerline_setup

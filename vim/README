@@ -1,0 +1,5 @@
+To add a new git repo
+
+cd ~/.vim
+git submodule add git://github.com/vim-scripts/taglist.vim.git bundle/taglist
+git commit -m 'add taglist plugin'
