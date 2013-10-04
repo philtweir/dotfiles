@@ -139,7 +139,7 @@ call pathogen#infect()
     au BufRead,BufNewFile Thorfile set ft=ruby                                   
     au BufRead,BufNewFile *.god set ft=ruby  
     au BufRead,BufNewFile .caprc set ft=ruby  
-    #au BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
+    " au BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
   augroup END
 
 
