@@ -5,7 +5,7 @@ call pathogen#infect()
   scriptencoding utf-8
 
   " I like pretty colors
-  colorscheme candycode
+  colorscheme elflord
   "colorscheme ir_black
 
   " These two enable syntax highlighting
