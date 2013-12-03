@@ -1,0 +1,6 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/var/www/thebeast/laravel/app/config'
+let g:netrw_dirhist_2='/var/www/scratch/L4withSentry/app/config'
+let g:netrw_dirhist_3='/var/www/thebeast/laravel/app/storage/logs'
+let g:netrw_dirhist_4='/var/www/thebeast/laravel/app/database/migrations'

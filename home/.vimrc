@@ -5,8 +5,7 @@ call pathogen#infect()
   scriptencoding utf-8
 
   " I like pretty colors
-  colorscheme camo
-  "colorscheme ir_black
+  colorscheme elflord
 
   " These two enable syntax highlighting
   set nocompatible          " We're running Vim, not Vi!
@@ -96,16 +95,6 @@ call pathogen#infect()
   " Turn off rails bits of statusbar
   let g:rails_statusline=0
 
-  " quit NERDTree after openning a file
-  let NERDTreeQuitOnOpen=1
-  " colored NERD Tree
-  let NERDChristmasTree = 1
-  let NERDTreeHighlightCursorline = 1
-  let NERDTreeShowHidden = 1
-  " map enter to activating a node
-  let NERDTreeMapActivateNode='<CR>'
-  let NERDTreeIgnore=['\.git','\.DS_Store','\.pdf', '.beam']
-
   " limit number of results shown for performance
   let g:fuzzy_matching_limit=60
   " ignore stuff that can't be openned, and generated files
@@ -128,6 +117,7 @@ call pathogen#infect()
     autocmd FileType vim set autoindent tabstop=2 shiftwidth=2 softtabstop=2 expandtab
     autocmd FileType cucumber set autoindent tabstop=2 shiftwidth=2 softtabstop=2 expandtab
     autocmd FileType puppet set autoindent tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+    autocmd FileType php set autoindent tabstop=2 shiftwidth=2 softtabstop=2 expandtab
     au BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
     au BufRead,BufNewFile *etc/nginx/* set ft=nginx 
     " treat rackup files like ruby

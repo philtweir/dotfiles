@@ -43,12 +43,13 @@ ZSH_THEME="pygmalion"
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
-if [ -f ${HOME}/.zshrc.local ]
-then
-	source ${HOME}/.zshrc.local
-fi
 
 bindkey -v
 
 bindkey '^R' history-incremental-pattern-search-backward
+
+if [ -f ${HOME}/.zshrc.local ]
+then
+	source ${HOME}/.zshrc.local
+fi
 
