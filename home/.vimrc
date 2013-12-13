@@ -220,9 +220,6 @@ call pathogen#infect()
   " align hashrockets with <leader>t control-l
   vmap <leader>t<C-l> :Align =><CR>
 
-  " Toggle NERDTree with <leader>d
-  map <silent> <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
-
   " TextMate fuzzy finder with <leader>t
   map <silent> <leader>t :FuzzyFinderTextMate<CR>
 
