@@ -39,7 +39,7 @@ setopt prompt_subst
 unsetopt beep
 unsetopt nomatch
 
-try_source "$config_dir/zsh-fix-keys"
+try_source "$config_dir/.zsh-fix-keys"
 
 autoload colors
 colors

@@ -1,11 +1,11 @@
-config_dir="$HOME/.local/share/mo-us-e/bin"
+config_dir="$HOME"
 
 # Source a file if it exists.
 function try_source {
 	[ -f "$1" ] && source "$1"
 }
 
-try_source "$config_dir/git-prompt.sh"
+try_source "$config_dir/.git-prompt.sh"
 try_source "$HOME/.aliases"
 
 # Set a color in the terminal palette.
