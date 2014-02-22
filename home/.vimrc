@@ -21,8 +21,8 @@ set updatetime=500
 set foldmethod=marker
 set history=200
 set viminfo='100,s10,h,%
-set statusline=%<%f\ %h%w%m%r\ %{fugitive#statusline()}%=%-14.(%4l/%L,%c%V%)\ %P
 set guioptions=ac
+set statusline=%<%f\ %h%w%m%r\ %{fugitive#statusline()}%=%-14.(%4l/%L,%c%V%)\ %P
 let g:c_no_curly_error=1
 
 nmap K i<Cr><Esc>
@@ -68,17 +68,6 @@ if has('python')
 	let g:UltiSnipsExpandTrigger="<tab>"
 	let g:UltiSnipsJumpForwardTrigger="<tab>"
 	let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-
-	if v:version > 703
-		Bundle 'Valloric/YouCompleteMe'
-		nmap <Leader>k <Esc>:YcmCompleter GoToDefinitionElseDeclaration<Cr>
-		let g:ycm_key_list_select_completion = ['<Down>']
-		let g:ycm_key_list_previous_completion = ['<Up>']
-		let g:ycm_allow_changing_updatetime=0
-		let g:ycm_confirm_extra_conf=0
-		set completeopt-=preview
-		let g:ycm_add_preview_to_completeopt=0
-	endif
 
 endif
 

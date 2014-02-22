@@ -1,3 +1,2 @@
-*
-!.gitignore
-!/ultisnips/*
+bundle
+!bundle/vundle
