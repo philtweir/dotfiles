@@ -113,25 +113,12 @@ if ! shopt -oq posix; then
   fi
 fi
 
-. /opt/openfoam220/etc/bashrc
-
-export ELMER_HOME=$HOME/Work/IMPPACT-RFA/numa-rfa-v10
-export ELMER_LIB=$ELMER_HOME/share/elmersolver/lib
-export ELMER_INCLUDE=$ELMER_HOME/share/elmersolver/include
-export ELMER_GRID=$HELMER_HOME/bin/ElmerGrid
-export ELMER_SOLVER=$ELMER_HOME/bin/ElmerSolver
-export LD_LIBRARY_PATH=.:$ELMER_HOME/share/elmersolver/lib:$LD_LIBRARY_PATH
-export PATH=$ELMER_HOME/bin:$PATH
-
 export PYTHONPATH=$PYTHONPATH:$HOME/.local/lib/python-2.7/site-packages
-export PATH=$HOME/.local/bin:$HOME/.cabal/bin:$PATH
+export PATH=$HOME/.local/bin
 export PKG_CONFIG_PATH=$HOME/.local/lib/pkgconfig:$PKG_CONFIG_PATH
 export INCLUDE=$HOME/.local/include:$INCLUDE
 export C_INCLUDE_PATH=$HOME/.local/include:$C_INCLUDE_PATH
 export CPLUS_INCLUDE_PATH=$HOME/.local/include/vtk-5.10:$HOME/.local/include:$CPLUS_INCLUDE_PATH
-export VTK_INCLUDEPATH=$HOME/.local/include/vtk-5.10
-export VTK_LIBPATH=$HOME/.local/lib/vtk-5.10
 export LD_LIBRARY_PATH=$HOME/.local/lib/vtk-5.10:$HOME/.local/lib:$LD_LIBRARY_PATH
 export LIB=$HOME/.local/lib:$LIB
-export NETGENDIR=$HOME/.local/bin
 export GI_TYPELIB_PATH=$HOME/.local/lib/girepository-1.0
