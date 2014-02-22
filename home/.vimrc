@@ -22,7 +22,7 @@ set foldmethod=marker
 set history=200
 set viminfo='100,s10,h,%
 set guioptions=ac
-set statusline=%<%f\ %h%w%m%r\ %{fugitive#statusline()}%=%-14.(%4l/%L,%c%V%)\ %P
+set statusline=%<%f\ %h%w%m%r\ %=%-14.(%4l/%L,%c%V%)\ %P
 let g:c_no_curly_error=1
 
 nmap K i<Cr><Esc>
