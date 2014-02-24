@@ -1,4 +1,4 @@
-config_dir="$HOME/.local/share/mo-us-e/bin"
+config_dir="$HOME/.local/share/mo-us-e"
 
 [ -d "$HOME/bin"                 ] && PATH="$HOME/bin:$PATH"
 [ -d "$config_dir/bin"           ] && PATH="$config_dir/bin:$PATH"
