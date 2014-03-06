@@ -30,6 +30,7 @@ compinit
 autoload edit-command-line && zle -N edit-command-line
 bindkey '\ee' edit-command-line
 
+
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
@@ -142,6 +143,10 @@ function prompt2 {
 #PROMPT='$(prompt)'
 #RPROMPT='$(rprompt)'
 #PROMPT2='$(prompt2)'
+
+bindkey -v
+
+bindkey '^R' history-incremental-pattern-search-backward
 
 if [ -f ${HOME}/.zshrc.local ]
 then
