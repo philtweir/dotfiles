@@ -144,10 +144,6 @@ function prompt2 {
 #RPROMPT='$(rprompt)'
 #PROMPT2='$(prompt2)'
 
-bindkey -v
-
-bindkey '^R' history-incremental-pattern-search-backward
-
 if [ -f ${HOME}/.zshrc.local ]
 then
 	source ${HOME}/.zshrc.local
