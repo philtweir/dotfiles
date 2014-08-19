@@ -20,8 +20,8 @@ Bundle 'guns/xterm-color-table.vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'krisajenkins/vim-projectlocal'
 Bundle 'scrooloose/nerdcommenter'
-
 Bundle 'ShowMarks'
+Bundle 'kien/ctrlp.vim'
 let g:showmarks_enable=0
 
 if has('python')
@@ -306,4 +306,10 @@ endif
     :w
   endfunction
   command! RspecToMocha call RspecToMocha()
-  
+
+  set undofile
+  set undodir=~/.vim/undodir
+
+  nmap <leader>p :CtrlPBufTagAll<cr>
+
+  set visualbell
