@@ -1,6 +1,7 @@
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
+Bundle 'scrooloose/syntastic'
 Bundle 'gmarik/vundle'
 Bundle 'godlygeek/tabular'
 Bundle 'hallison/vim-markdown'
@@ -17,6 +18,8 @@ Bundle 'bkad/CamelCaseMotion'
 Bundle 'groenewege/vim-less'
 Bundle 'guns/xterm-color-table.vim'
 Bundle 'tpope/vim-fugitive'
+Bundle 'krisajenkins/vim-projectlocal'
+Bundle 'scrooloose/nerdcommenter'
 
 Bundle 'ShowMarks'
 let g:showmarks_enable=0
@@ -148,6 +151,7 @@ endif
     " autoindent with two spaces, always expand tabs
     autocmd FileType ruby,eruby,yaml set autoindent shiftwidth=2 softtabstop=2 tabstop=2 expandtab
     autocmd FileType python set autoindent shiftwidth=4 softtabstop=4 expandtab
+    autocmd FileType cpp set autoindent shiftwidth=4 softtabstop=4 expandtab
     autocmd FileType javascript,html,htmldjango,css set autoindent shiftwidth=2 softtabstop=2 expandtab
     autocmd FileType vim set autoindent tabstop=2 shiftwidth=2 softtabstop=2 expandtab
     autocmd FileType cucumber set autoindent tabstop=2 shiftwidth=2 softtabstop=2 expandtab
