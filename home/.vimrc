@@ -17,8 +17,8 @@ Bundle 'bkad/CamelCaseMotion'
 Bundle 'groenewege/vim-less'
 Bundle 'guns/xterm-color-table.vim'
 Bundle 'tpope/vim-fugitive'
-
 Bundle 'ShowMarks'
+Bundle 'kien/ctrlp.vim'
 let g:showmarks_enable=0
 
 if has('python')
@@ -302,4 +302,10 @@ endif
     :w
   endfunction
   command! RspecToMocha call RspecToMocha()
-  
+
+  set undofile
+  set undodir=~/.vim/undodir
+
+  nmap <leader>p :CtrlPBufTagAll<cr>
+
+  set visualbell
