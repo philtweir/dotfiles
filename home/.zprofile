@@ -1,1 +1,1 @@
-source "$HOME/.profile"
+.zprezto/runcoms/zprofile
