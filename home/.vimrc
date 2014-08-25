@@ -22,7 +22,11 @@ Bundle 'krisajenkins/vim-projectlocal'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'ShowMarks'
 Bundle 'kien/ctrlp.vim'
+Bundle 'bling/vim-airline'
+
 let g:showmarks_enable=0
+
+set t_Co=256
 
 if has('python')
 
@@ -313,3 +317,6 @@ endif
   nmap <leader>p :CtrlPBufTagAll<cr>
 
   set visualbell
+
+  let g:airline_powerline_fonts=1
+  let g:airline_theme='molokai'

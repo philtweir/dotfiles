@@ -1,8 +1,8 @@
 source "$HOME/.shellrc"
-ZSH=$HOME/.oh-my-zsh
+#ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="pygmalion"
-plugins=(git sudo)
-source $ZSH/oh-my-zsh.sh
+#plugins=(git sudo)
+#source $ZSH/oh-my-zsh.sh
 
 try_source /usr/share/doc/pkgfile/command-not-found.zsh
 try_source /etc/zsh_command_not_found
