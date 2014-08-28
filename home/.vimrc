@@ -315,6 +315,8 @@ endif
   set undodir=~/.vim/undodir
 
   nmap <leader>p :CtrlPBufTagAll<cr>
+  nmap <leader>T :!phpunit<cr>
+  nmap <leader>t :!phpunit %<cr>
 
   set visualbell
 
