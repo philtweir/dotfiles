@@ -23,6 +23,7 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'ShowMarks'
 Bundle 'kien/ctrlp.vim'
 Bundle 'bling/vim-airline'
+Bundle 'Valloric/YouCompleteMe'
 
 let g:showmarks_enable=0
 
@@ -322,3 +323,6 @@ endif
 
   let g:airline_powerline_fonts=1
   let g:airline_theme='molokai'
+
+  nnoremap <leader>] :YcmCompleter GoTo<CR>
+  let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
