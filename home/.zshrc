@@ -15,3 +15,6 @@ fi
 if [[ -s "${ZDOTDIR:-$HOME}/.zshrc.local" ]]; then
   source "${ZDOTDIR:-$HOME}/.zshrc.local"
 fi
+
+export PATH="${PATH}:${HOME}/.local/bin"
+export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${HOME}/.local/lib"

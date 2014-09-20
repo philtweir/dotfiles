@@ -23,7 +23,7 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'ShowMarks'
 Bundle 'kien/ctrlp.vim'
 Bundle 'bling/vim-airline'
-Bundle 'Valloric/YouCompleteMe'
+"Bundle 'Valloric/YouCompleteMe'
 
 let g:showmarks_enable=0
 
