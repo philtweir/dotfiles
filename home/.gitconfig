@@ -1,32 +1,32 @@
 [diff]
-	tool = vimdiff
+    tool = vimdiff
 
 [color]
-	ui = true
+    ui = true
 
 [alias]
-	l     = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --author-date-order
-	lg    = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --author-date-order --all
-	stat  = status
-	st    = status
-	ff    = merge --ff-only
-	index = diff --cached
+    l     = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --author-date-order
+    lg    = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --author-date-order --all
+    stat  = status
+    st    = status
+    ff    = merge --ff-only
+    index = diff --cached
 
 [core]
-	excludesfile = ~/.gitignore
-	whitespace = space-before-tab
+    excludesfile = ~/.gitignore
+    whitespace = space-before-tab
 
 [push]
-	default = upstream
+    default = upstream
 
 [merge]
-	conflictstyle = diff3
+    conflictstyle = diff3
 
 [mergetool "tabbedmeld"]
-	cmd = meld $LOCAL $BASE $REMOTE -o $MERGED --diff $BASE $LOCAL --diff $BASE $REMOTE
+    cmd = meld $LOCAL $BASE $REMOTE -o $MERGED --diff $BASE $LOCAL --diff $BASE $REMOTE
 
 [mergetool "fugitive"]
-	cmd = vim -f -c Gdiff $MERGED
+    cmd = vim -f -c Gdiff $MERGED
 
 [include]
-	path = ~/.gitconfig.local
+    path = ~/.gitconfig.local
