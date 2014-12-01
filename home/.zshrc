@@ -16,5 +16,10 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zshrc.local" ]]; then
   source "${ZDOTDIR:-$HOME}/.zshrc.local"
 fi
 
+# https://bugs.launchpad.net/byobu/+bug/1382598
+if [[ "$COLORTERM" == "gnome-terminal" ]] || [[ ${$(</proc/$PPID/cmdline):t} == gnome-terminal* ]]; then
+  export TERM="xterm-256color"
+fi
+
 export PATH="${PATH}:${HOME}/.local/bin"
 export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${HOME}/.local/lib"

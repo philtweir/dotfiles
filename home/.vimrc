@@ -23,7 +23,12 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'ShowMarks'
 Bundle 'kien/ctrlp.vim'
 Bundle 'bling/vim-airline'
-"Bundle 'Valloric/YouCompleteMe'
+
+let ycm_in_vim_env=$YCM_IN_VIM
+
+if ycm_in_vim_env == '1'
+  Bundle 'Valloric/YouCompleteMe'
+endif
 
 let g:showmarks_enable=0
 
@@ -326,3 +331,4 @@ endif
 
   nnoremap <leader>] :YcmCompleter GoTo<CR>
   let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+  let g:ycm_extra_conf_globlist = ['~/Work/*', '/home/scratch/*']
