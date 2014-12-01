@@ -29,6 +29,7 @@ let ycm_in_vim_env=$YCM_IN_VIM
 if ycm_in_vim_env == '1'
   Bundle 'Valloric/YouCompleteMe'
 endif
+Bundle 'philtweir/vim-hardtime'
 
 let g:showmarks_enable=0
 
@@ -332,3 +333,6 @@ endif
   nnoremap <leader>] :YcmCompleter GoTo<CR>
   let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
   let g:ycm_extra_conf_globlist = ['~/Work/*', '/home/scratch/*']
+
+  let g:hardtime_default_on = 1
+  let g:hardtime_allow_different_key = 1
