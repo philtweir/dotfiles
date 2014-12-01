@@ -30,3 +30,6 @@
 
 [include]
     path = ~/.gitconfig.local
+[user]
+	email = phil.weir@numa.ie
+	name = Phil Weir

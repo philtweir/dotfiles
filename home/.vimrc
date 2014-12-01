@@ -24,6 +24,7 @@ Bundle 'ShowMarks'
 Bundle 'kien/ctrlp.vim'
 Bundle 'bling/vim-airline'
 "Bundle 'Valloric/YouCompleteMe'
+Bundle 'philtweir/vim-hardtime'
 
 let g:showmarks_enable=0
 
@@ -326,3 +327,6 @@ endif
 
   nnoremap <leader>] :YcmCompleter GoTo<CR>
   let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+
+  let g:hardtime_default_on = 1
+  let g:hardtime_allow_different_key = 1
