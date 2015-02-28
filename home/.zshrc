@@ -21,5 +21,12 @@ if [[ "$COLORTERM" == "gnome-terminal" ]] || [[ ${$(</proc/$PPID/cmdline):t} == 
   export TERM="xterm-256color"
 fi
 
+function grt() {
+  echo $(git rev-parse --show-toplevel)
+}
+function G() {
+  cd $(grt)
+}
+
 export PATH="${PATH}:${HOME}/.local/bin"
 export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${HOME}/.local/lib"
