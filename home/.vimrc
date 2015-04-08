@@ -23,6 +23,7 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'ShowMarks'
 Bundle 'kien/ctrlp.vim'
 Bundle 'bling/vim-airline'
+Bundle 'Mustang2'
 
 let ycm_in_vim_env=$YCM_IN_VIM
 
