@@ -1,3 +1,5 @@
 bundle
 !bundle/vundle
 undodir
+.netrwhist
+.netrwhist~

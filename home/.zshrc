@@ -29,3 +29,12 @@ bindkey -M vicmd '?' history-incremental-pattern-search-forward
 bindkey -M viins '^R' history-incremental-pattern-search-backward
 bindkey -M viins '^F' history-incremental-pattern-search-forward
 
+function grt() {
+  echo $(git rev-parse --show-toplevel)
+}
+function G() {
+  cd $(grt)
+}
+
+export PATH="${PATH}:${HOME}/.local/bin"
+export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${HOME}/.local/lib"

@@ -23,6 +23,19 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'ShowMarks'
 Bundle 'kien/ctrlp.vim'
 Bundle 'bling/vim-airline'
+Bundle 'Mustang2'
+
+function! DiffW()
+  let opt = ""
+   if &diffopt =~ "icase"
+     let opt = opt . "-i "
+   endif
+   if &diffopt =~ "iwhite"
+     let opt = opt . "-w " " vim uses -b by default
+   endif
+   silent execute "!diff -a --binary " . opt .
+     \ v:fname_in . " " . v:fname_new .  " > " . v:fname_out
+endfunction
 
 let ycm_in_vim_env=$YCM_IN_VIM
 
@@ -340,14 +353,3 @@ endif
 " http://stackoverflow.com/questions/1265410/is-there-a-way-to-configure-vimdiff-to-ignore-all-whitespaces
   set diffopt+=iwhite
   set diffexpr=DiffW()
-  function DiffW()
-    let opt = ""
-     if &diffopt =~ "icase"
-       let opt = opt . "-i "
-     endif
-     if &diffopt =~ "iwhite"
-       let opt = opt . "-w " " vim uses -b by default
-     endif
-     silent execute "!diff -a --binary " . opt .
-       \ v:fname_in . " " . v:fname_new .  " > " . v:fname_out
-  endfunction
