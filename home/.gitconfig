@@ -21,7 +21,7 @@
 
 [merge]
     conflictstyle = diff3
-	tool = fugitive
+	tool = diffconflicts
 
 [mergetool "tabbedmeld"]
     cmd = meld $LOCAL $BASE $REMOTE -o $MERGED --diff $BASE $LOCAL --diff $BASE $REMOTE
@@ -34,3 +34,8 @@
 [user]
 	email = phil.weir@numa.ie
 	name = Phil Weir
+[mergetool "diffconflicts"]
+	cmd = diffconflicts vim $BASE $LOCAL $REMOTE $MERGED
+	trustExitCode = true
+[mergetool]
+	keepBackup = false

@@ -21,5 +21,11 @@ if [[ "$COLORTERM" == "gnome-terminal" ]] || [[ ${$(</proc/$PPID/cmdline):t} == 
   export TERM="xterm-256color"
 fi
 
-export PATH="${PATH}:${HOME}/.local/bin"
-export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${HOME}/.local/lib"
+# Search backwards and forwards with a pattern
+bindkey -M vicmd '/' history-incremental-pattern-search-backward
+bindkey -M vicmd '?' history-incremental-pattern-search-forward
+
+# set up for insert mode too
+bindkey -M viins '^R' history-incremental-pattern-search-backward
+bindkey -M viins '^F' history-incremental-pattern-search-forward
+
