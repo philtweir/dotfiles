@@ -1,4 +1,1 @@
-Just clone this in ~/config or something, and run ./install in it.
-
-You should put your personal git configuration (like your name and email)
-in ~/.gitconfig.local.
+General dotfiles, a castle for use with homesick. This is a public archive and any personalized or specific details should be in ~/.zshrc.local (and so forth) and /not/ committed to this repo.
