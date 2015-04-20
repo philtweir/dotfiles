@@ -21,12 +21,21 @@
 
 [merge]
     conflictstyle = diff3
+	tool = diffconflicts
 
 [mergetool "tabbedmeld"]
     cmd = meld $LOCAL $BASE $REMOTE -o $MERGED --diff $BASE $LOCAL --diff $BASE $REMOTE
 
 [mergetool "fugitive"]
-    cmd = vim -f -c Gdiff $MERGED
+	cmd = vim -f -c \"Gdiff\" \"$MERGED\"
 
 [include]
     path = ~/.gitconfig.local
+[user]
+	email = phil.weir@numa.ie
+	name = Phil Weir
+[mergetool "diffconflicts"]
+	cmd = diffconflicts vim $BASE $LOCAL $REMOTE $MERGED
+	trustExitCode = true
+[mergetool]
+	keepBackup = false
