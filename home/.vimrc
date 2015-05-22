@@ -347,7 +347,7 @@ endif
   let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
   let g:ycm_extra_conf_globlist = ['~/Work/*', '/home/scratch/*']
 
-  let g:hardtime_default_on = 1
+  let g:hardtime_default_on = 0
   let g:hardtime_allow_different_key = 1
 
 " http://stackoverflow.com/questions/1265410/is-there-a-way-to-configure-vimdiff-to-ignore-all-whitespaces
