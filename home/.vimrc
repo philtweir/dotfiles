@@ -353,3 +353,8 @@ endif
 " http://stackoverflow.com/questions/1265410/is-there-a-way-to-configure-vimdiff-to-ignore-all-whitespaces
   set diffopt+=iwhite
   set diffexpr=DiffW()
+
+  let g:syntastic_python_python_exec = '/usr/bin/python3'
+
+  autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+  autocmd InsertLeave * if pumvisible() == 0|pclose|endif
