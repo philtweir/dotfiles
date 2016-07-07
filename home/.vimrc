@@ -105,6 +105,7 @@ endif
   " enable line numbers 
   set number
   setlocal numberwidth=5
+  set rnu
 
   " Enable tab complete for commands.
   " first tab shows all matches. next tab starts cycling through the matches
@@ -355,6 +356,7 @@ endif
   set diffexpr=DiffW()
 
   let g:syntastic_python_python_exec = '/usr/bin/python3'
+  let g:syntastic_python_pylint_exe = '/usr/bin/pylint3'
 
   autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
   autocmd InsertLeave * if pumvisible() == 0|pclose|endif
