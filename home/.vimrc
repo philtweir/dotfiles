@@ -358,5 +358,12 @@ endif
   let g:syntastic_python_python_exec = '/usr/bin/python3'
   let g:syntastic_python_pylint_exe = '/usr/bin/pylint3'
 
+  set expandtab
+  set shiftwidth=2
+
   autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
   autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+
+  nnoremap : ;
+  nnoremap ; :
+
