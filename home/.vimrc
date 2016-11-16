@@ -1,29 +1,168 @@
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+" Install vim-plug if we don't already have it
+if empty(glob("~/.vim/autoload/plug.vim"))
+    " Ensure all needed directories exist  (Thanks @kapadiamush)
+    execute '!mkdir -p ~/.vim/plugged'
+    execute '!mkdir -p ~/.vim/autoload'
+    " Download the actual plugin manager
+    execute '!curl -fLo ~/.vim/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim'
+endif
 
-Bundle 'scrooloose/syntastic'
-Bundle 'gmarik/vundle'
-Bundle 'godlygeek/tabular'
-Bundle 'hallison/vim-markdown'
-Bundle 'surround.vim'
-Bundle 'repeat.vim'
-Bundle 'speeddating.vim'
-Bundle 'VisIncr'
-Bundle 'vis'
-Bundle 'Rename2'
-Bundle 'JSON.vim'
-Bundle 'glsl.vim'
-Bundle 'django.vim'
-Bundle 'bkad/CamelCaseMotion'
-Bundle 'groenewege/vim-less'
-Bundle 'guns/xterm-color-table.vim'
-Bundle 'tpope/vim-fugitive'
-Bundle 'krisajenkins/vim-projectlocal'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'ShowMarks'
-Bundle 'kien/ctrlp.vim'
-Bundle 'bling/vim-airline'
-Bundle 'Mustang2'
+call plug#begin('~/.vim/plugged')
+
+" Plug 'scrooloose/syntastic'
+" Plug 'gmarik/vundle'
+" Plug 'godlygeek/tabular'
+" Plug 'hallison/vim-markdown'
+" Plug 'surround.vim'
+" Plug 'speeddating.vim'
+" Plug 'VisIncr'
+" Plug 'vis'
+" Plug 'Rename2'
+" Plug 'JSON.vim'
+" Plug 'glsl.vim'
+" Plug 'django.vim'
+" Plug 'bkad/CamelCaseMotion'
+" Plug 'groenewege/vim-less'
+" Plug 'guns/xterm-color-table.vim'
+" Plug 'tpope/vim-fugitive'
+" Plug 'krisajenkins/vim-projectlocal'
+" Plug 'scrooloose/nerdcommenter'
+" Plug 'ShowMarks'
+" Plug 'kien/ctrlp.vim'
+Plug 'repeat.vim'
+Plug 'bling/vim-airline'
+Plug 'Mustang2'
+Plug 'rust-lang/rust.vim'
+Plug 'junegunn/vim-emoji'
+" Colorschemes
+Plug 'captbaritone/molokai'
+Plug 'chriskempson/vim-tomorrow-theme'
+Plug 'altercation/vim-colors-solarized'
+Plug 'fxn/vim-monochrome'
+Plug 'chriskempson/base16-vim'
+Plug 'NLKNguyen/papercolor-theme'
+
+" Syntax
+Plug 'tpope/vim-git', { 'for': 'git' }
+Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
+Plug 'xsbeats/vim-blade', { 'for': 'blade' }
+Plug 'qrps/lilypond-vim', { 'for': 'lilypond' }
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+
+" Completion
+Plug 'mattn/emmet-vim', { 'for': 'html' }
+
+" Make % match xml tags
+Plug 'edsono/vim-matchit', { 'for': ['html', 'xml'] }
+
+" Make tab handle all completions
+Plug 'ervandew/supertab'
+
+" Syntastic: Code linting errors
+Plug 'scrooloose/syntastic', { 'for': ['php', 'python', 'javascript', 'css'] }
+
+" Pairs of handy bracket mappings
+Plug 'tpope/vim-unimpaired'
+
+" Fancy statusline
+Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+" Fuzzy file opener
+" Plug 'kien/ctrlp.vim' <-- Not maintained any more
+Plug 'ctrlpvim/ctrlp.vim'
+
+" Open from quick-fix-list in new split
+Plug 'yssl/QFEnter'
+
+Plug 'rking/ag.vim'
+Plug 'Chun-Yang/vim-action-ag'
+
+" Rename files from within vim
+Plug 'tpope/vim-eunuch'
+
+" Make commenting easier
+Plug 'tpope/vim-commentary'
+
+" Adjust 'shiftwidth' and 'expandtab' heuristically based on the current file
+Plug 'tpope/vim-sleuth'
+
+" CamelCase motions through words
+Plug 'bkad/CamelCaseMotion'
+
+" Split and join lines of code intelligently
+Plug 'AndrewRadev/splitjoin.vim'
+
+Plug 'gcmt/taboo.vim'
+
+Plug 'vim-scripts/CursorLineCurrentWindow'
+
+" Plug 'ternjs/tern_for_vim'
+
+" Split navigation that works with tmux
+" Plug 'christoomey/vim-tmux-navigator'
+
+" Change brackets and quotes
+Plug 'tpope/vim-surround'
+" Make vim-surround repeatable with .
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-abolish'
+
+" Custom motions
+
+" Indent object
+Plug 'michaeljsmith/vim-indent-object'
+" Camel Case object
+Plug 'bkad/CamelCaseMotion'
+" Argumetn object
+Plug 'vim-scripts/argtextobj.vim'
+
+" Fugitive: Git from within Vim
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+
+Plug 'airblade/vim-gitgutter'
+
+" Run Python tests in tmux splits
+" Plug 'captbaritone/projects/vim-vigilant', { 'for': 'python' }
+Plug '~/projects/vim-vigilant', { 'for': 'python' }
+Plug 'benmills/vimux', { 'for': ['python', 'javascript'] }
+
+"Plug 'Valloric/YouCompleteMe'
+" Python completion and tag navigation
+Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+
+Plug 'FooSoft/vim-argwrap'
+
+" Take notes and keep todo lists in vim
+Plug 'vimwiki/vimwiki'
+
+" Find the class/method based on cursor position
+"Plug 'vim-scripts/pythonhelper'
+
+" 'Vastly improved Javascript indentation and syntax support in Vim'
+Plug 'pangloss/vim-javascript'
+
+Plug 'reedes/vim-pencil'
+
+" Visualize undo tree
+Plug 'mbbill/undotree'
+
+Plug 'parkr/vim-jekyll'
+
+
+" Other plugins require curl
+if executable("curl")
+
+    " Webapi: Dependency of Gist-vim
+    Plug 'mattn/webapi-vim'
+
+    " Gist: Post text to gist.github
+    Plug 'mattn/gist-vim'
+endif
+
+filetype plugin indent on                   " required!
+call plug#end()
 
 function! DiffW()
   let opt = ""
@@ -39,10 +178,12 @@ endfunction
 
 let ycm_in_vim_env=$YCM_IN_VIM
 
+let g:ycm_rust_src_path = '/usr/local/src/rust-git/src'
+
 if ycm_in_vim_env == '1'
-  Bundle 'Valloric/YouCompleteMe'
+  Plug 'Valloric/YouCompleteMe'
 endif
-Bundle 'philtweir/vim-hardtime'
+Plug 'philtweir/vim-hardtime'
 
 let g:showmarks_enable=0
 
@@ -50,14 +191,34 @@ set t_Co=256
 
 if has('python')
 
-	Bundle 'UltiSnips'
+	Plug 'UltiSnips'
 	let g:UltiSnipsSnippetDirectories=["ultisnips"]
 	let g:UltiSnipsExpandTrigger="<tab>"
 	let g:UltiSnipsJumpForwardTrigger="<tab>"
 	let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 endif
-"call pathogen#infect()
+function! WrapForTmux(s)
+  if !exists('$TMUX')
+    return a:s
+  endif
+
+  let tmux_start = "\<Esc>Ptmux;"
+  let tmux_end = "\<Esc>\\"
+
+  return tmux_start . substitute(a:s, "\<Esc>", "\<Esc>\<Esc>", 'g') . tmux_end
+endfunction
+
+let &t_SI .= WrapForTmux("\<Esc>[?2004h")
+let &t_EI .= WrapForTmux("\<Esc>[?2004l")
+
+function! XTermPasteBegin()
+  set pastetoggle=<Esc>[201~
+  set paste
+  return ""
+endfunction
+
+inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 
 " Section: configuration
 
@@ -92,9 +253,6 @@ endif
 
   "sta:   helps with backspacing because of expandtab
   set smarttab
-
-  " Change <Leader>
-  let mapleader = ","
 
   " Set temporary directory (don't litter local dir with swp/tmp files)
   set directory=/tmp/
@@ -205,9 +363,12 @@ endif
         \   exe "normal g`\"" |
         \ endi
 
+  " Don't pclose the Preview window after doc viewing (stop flickering)
+  let g:jedi#auto_close_doc=0
+
   " Turn on language specific omnifuncs
   autocmd FileType ruby set omnifunc=rubycomplete#Complete
-  autocmd FileType python set omnifunc=pythoncomplete#Complete
+  autocmd FileType python set omnifunc=python3complete#Complete
   autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
   autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
   autocmd FileType css set omnifunc=csscomplete#CompleteCSS
@@ -279,10 +440,10 @@ endif
   map! <F1> <Esc>
 
   " insert hashrocket, =>, with control-l
-  imap <C-l> <Space>=><Space>
+  "imap <C-l> <Space>=><Space>
 
   " align hashrockets with <leader>t control-l
-  vmap <leader>t<C-l> :Align =><CR>
+  "vmap <leader>t<C-l> :Align =><CR>
 
   " TextMate fuzzy finder with <leader>t
   map <silent> <leader>t :FuzzyFinderTextMate<CR>
@@ -345,8 +506,8 @@ endif
   let g:airline_theme='molokai'
 
   nnoremap <leader>] :YcmCompleter GoTo<CR>
-  let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
-  let g:ycm_extra_conf_globlist = ['~/Work/*', '/home/scratch/*']
+  "let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+  "let g:ycm_extra_conf_globlist = ['~/Work/*', '/home/scratch/*']
 
   let g:hardtime_default_on = 0
   let g:hardtime_allow_different_key = 1
@@ -361,9 +522,8 @@ endif
   set expandtab
   set shiftwidth=2
 
-  autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
-  autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-
   nnoremap : ;
   nnoremap ; :
 
+  autocmd BufNewFile,BufRead *.rs set filetype=rust
+  let g:syntastic_rust_clippy_post_args = ['--release', '--', '-Dclippy', '-Wclippy_pedantic']
