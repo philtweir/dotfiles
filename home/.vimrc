@@ -41,7 +41,9 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'fxn/vim-monochrome'
 Plug 'chriskempson/base16-vim'
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'beanworks/vim-phpfmt'
 
+Plug 'embear/vim-localvimrc'
 " Syntax
 Plug 'tpope/vim-git', { 'for': 'git' }
 Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
@@ -52,14 +54,13 @@ Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 " Completion
 Plug 'mattn/emmet-vim', { 'for': 'html' }
 
-" Make % match xml tags
-Plug 'edsono/vim-matchit', { 'for': ['html', 'xml'] }
-
 " Make tab handle all completions
 Plug 'ervandew/supertab'
 
 " Syntastic: Code linting errors
-Plug 'scrooloose/syntastic', { 'for': ['php', 'python', 'javascript', 'css'] }
+Plug 'scrooloose/syntastic' ", { 'for': ['php', 'python', 'javascript', 'css', 'vue'] }
+Plug 'posva/vim-vue'
+Plug 'sekel/vim-vue-syntastic'
 
 " Pairs of handy bracket mappings
 Plug 'tpope/vim-unimpaired'
@@ -94,6 +95,8 @@ Plug 'bkad/CamelCaseMotion'
 Plug 'AndrewRadev/splitjoin.vim'
 
 Plug 'gcmt/taboo.vim'
+
+Plug 'chr15m/vim-gherkin'
 
 Plug 'vim-scripts/CursorLineCurrentWindow'
 
@@ -150,6 +153,7 @@ Plug 'mbbill/undotree'
 
 Plug 'parkr/vim-jekyll'
 
+Plug 'jamessan/vim-gnupg'
 
 " Other plugins require curl
 if executable("curl")
@@ -517,13 +521,23 @@ inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
   set diffexpr=DiffW()
 
   let g:syntastic_python_python_exec = '/usr/bin/python3'
-  let g:syntastic_python_pylint_exe = '/usr/bin/pylint3'
+  let g:syntastic_python_pylint_exe = '/usr/bin/pylint'
+  let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
+  let g:syntastic_php_phpcs_args = '--standard=PSR2'
+  let g:syntastic_javascript_checkers = ['eslint']
+  let g:syntastic_vue_checkers = ['eslint']
+
+  let g:phpfmt_standard = 'PSR2'
 
   set expandtab
   set shiftwidth=2
 
-  nnoremap : ;
-  nnoremap ; :
+  nnoremap : <space>
+  nnoremap <space> :
 
   autocmd BufNewFile,BufRead *.rs set filetype=rust
   let g:syntastic_rust_clippy_post_args = ['--release', '--', '-Dclippy', '-Wclippy_pedantic']
+
+  "autocmd BufNewFile,BufRead *.vue set filetype=html
+
+  let g:localvimrc_whitelist = '/home/philtweir/Work/Flax_and_Teal/Sync/Clients/Ogg/Project/orp-frontend'
