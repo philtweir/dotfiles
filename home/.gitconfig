@@ -15,6 +15,7 @@
 [core]
     excludesfile = ~/.gitignore
     whitespace = space-before-tab
+	editor = vim
 
 [push]
     default = upstream
