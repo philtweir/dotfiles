@@ -9,6 +9,7 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'w0rp/ale'
 " Plug 'scrooloose/syntastic'
 " Plug 'gmarik/vundle'
 " Plug 'godlygeek/tabular'
@@ -29,9 +30,8 @@ call plug#begin('~/.vim/plugged')
 " Plug 'scrooloose/nerdcommenter'
 " Plug 'ShowMarks'
 " Plug 'kien/ctrlp.vim'
-Plug 'repeat.vim'
+" Plug 'repeat.vim'
 Plug 'bling/vim-airline'
-Plug 'Mustang2'
 Plug 'rust-lang/rust.vim'
 Plug 'junegunn/vim-emoji'
 " Colorschemes
@@ -58,9 +58,9 @@ Plug 'mattn/emmet-vim', { 'for': 'html' }
 Plug 'ervandew/supertab'
 
 " Syntastic: Code linting errors
-Plug 'scrooloose/syntastic' ", { 'for': ['php', 'python', 'javascript', 'css', 'vue'] }
+" Plug 'scrooloose/syntastic' ", { 'for': ['php', 'python', 'javascript', 'css', 'vue'] }
 Plug 'posva/vim-vue'
-Plug 'sekel/vim-vue-syntastic'
+" Plug 'sekel/vim-vue-syntastic'
 
 " Pairs of handy bracket mappings
 Plug 'tpope/vim-unimpaired'
@@ -68,10 +68,6 @@ Plug 'tpope/vim-unimpaired'
 " Fancy statusline
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-
-" Fuzzy file opener
-" Plug 'kien/ctrlp.vim' <-- Not maintained any more
-Plug 'ctrlpvim/ctrlp.vim'
 
 " Open from quick-fix-list in new split
 Plug 'yssl/QFEnter'
@@ -133,7 +129,7 @@ Plug 'benmills/vimux', { 'for': ['python', 'javascript'] }
 
 "Plug 'Valloric/YouCompleteMe'
 " Python completion and tag navigation
-Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+" Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 
 Plug 'FooSoft/vim-argwrap'
 
@@ -231,7 +227,6 @@ inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 
   scriptencoding utf-8
 
-  " I like pretty colors
   colorscheme elflord
 
   " These two enable syntax highlighting
@@ -320,16 +315,6 @@ inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
   " Turn off rails bits of statusbar
   let g:rails_statusline=0
 
-  " limit number of results shown for performance
-  let g:fuzzy_matching_limit=60
-  " ignore stuff that can't be openned, and generated files
-  let g:fuzzy_ignore = "*.png;*.PNG;*.JPG;*.jpg;*.GIF;*.gif;*.beam;vendor/**;coverage/**;tmp/**;rdoc/**"
-  " increate the number of files scanned for very large projects
-  let g:fuzzy_ceiling=20000
-  " display relative path, instead of abbrevated path (lib/jeweler.rb vs
-  " l/jeweler.rb)
-  let g:fuzzy_path_display = 'relative_path'
-
   let g:browser = 'open '
 
   augroup myfiletypes
@@ -372,7 +357,6 @@ inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 
   " Turn on language specific omnifuncs
   autocmd FileType ruby set omnifunc=rubycomplete#Complete
-  autocmd FileType python set omnifunc=python3complete#Complete
   autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
   autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
   autocmd FileType css set omnifunc=csscomplete#CompleteCSS
@@ -449,12 +433,6 @@ inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
   " align hashrockets with <leader>t control-l
   "vmap <leader>t<C-l> :Align =><CR>
 
-  " TextMate fuzzy finder with <leader>t
-  map <silent> <leader>t :FuzzyFinderTextMate<CR>
-
-  " FuzzyFinder tags with <leader>T
-  nnoremap <silent> <leader>T :FuzzyFinderTag!<CR>
-
   " <leader>F to begin searching with ack
   map <leader>F :Ack<space>
 
@@ -520,12 +498,14 @@ inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
   set diffopt+=iwhite
   set diffexpr=DiffW()
 
-  let g:syntastic_python_python_exec = '/usr/bin/python3'
-  let g:syntastic_python_pylint_exe = '/usr/bin/pylint'
-  let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
-  let g:syntastic_php_phpcs_args = '--standard=PSR2'
-  let g:syntastic_javascript_checkers = ['eslint']
-  let g:syntastic_vue_checkers = ['eslint']
+  " let g:syntastic_python_python_exec = '/usr/bin/python3'
+  " let g:syntastic_python_pylint_exe = '/usr/bin/pylint'
+  " let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
+  " let g:syntastic_php_phpcs_args = '--standard=PSR2'
+  " let g:syntastic_javascript_checkers = ['eslint']
+  " let g:syntastic_vue_checkers = ['eslint']
+  " let g:ale_linters = {'rust': ['rls']}
+  let g:ale_completion_enabled = 1
 
   let g:phpfmt_standard = 'PSR2'
 
@@ -536,7 +516,7 @@ inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
   nnoremap <space> :
 
   autocmd BufNewFile,BufRead *.rs set filetype=rust
-  let g:syntastic_rust_clippy_post_args = ['--release', '--', '-Dclippy', '-Wclippy_pedantic']
+  " let g:syntastic_rust_clippy_post_args = ['--release', '--', '-Dclippy', '-Wclippy_pedantic']
 
   "autocmd BufNewFile,BufRead *.vue set filetype=html
 

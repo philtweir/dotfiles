@@ -17,7 +17,7 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zshrc.local" ]]; then
 fi
 
 # https://bugs.launchpad.net/byobu/+bug/1382598
-if [[ "$COLORTERM" == "gnome-terminal" ]] || [[ ${$(</proc/$PPID/cmdline):t} == gnome-terminal* ]]; then
+if [[ "$COLORTERM" == "xfce4-terminal" ]] || [[ "$COLORTERM" == "gnome-terminal" ]] || [[ ${$(</proc/$PPID/cmdline):t} == gnome-terminal* ]]; then
   export TERM="xterm-256color"
 fi
 
@@ -38,3 +38,4 @@ function G() {
 
 export PATH="${PATH}:${HOME}/.local/bin"
 export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${HOME}/.local/lib"
+export EDITOR="vi"

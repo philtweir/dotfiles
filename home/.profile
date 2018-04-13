@@ -9,3 +9,5 @@ config_dir="$HOME/.local/share/mo-us-e"
 [ -f "$HOME/.profile.local" ] && source "$HOME/.profile.local"
 
 # vi: ft=sh
+
+export PATH="$HOME/.cargo/bin:$PATH"
