@@ -56,11 +56,6 @@ Plug 'mattn/emmet-vim', { 'for': 'html' }
 " Make tab handle all completions
 Plug 'ervandew/supertab'
 
-" Syntastic: Code linting errors
-Plug 'scrooloose/syntastic' ", { 'for': ['php', 'python', 'javascript', 'css', 'vue'] }
-Plug 'posva/vim-vue'
-Plug 'sekel/vim-vue-syntastic'
-
 " Pairs of handy bracket mappings
 Plug 'tpope/vim-unimpaired'
 
@@ -510,12 +505,12 @@ inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
   set diffopt+=iwhite
   set diffexpr=DiffW()
 
-  let g:syntastic_python_python_exec = '/usr/bin/python3'
-  let g:syntastic_python_pylint_exe = '/usr/bin/pylint'
-  let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
-  let g:syntastic_php_phpcs_args = '--standard=PSR2'
-  let g:syntastic_javascript_checkers = ['eslint']
-  let g:syntastic_vue_checkers = ['eslint']
+  "let g:syntastic_python_python_exec = '/usr/bin/python3'
+  "let g:syntastic_python_pylint_exe = '/usr/bin/pylint'
+  "let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
+  "let g:syntastic_php_phpcs_args = '--standard=PSR2'
+  "let g:syntastic_javascript_checkers = ['eslint']
+  "let g:syntastic_vue_checkers = ['eslint']
 
   let g:phpfmt_standard = 'PSR2'
 
@@ -526,7 +521,7 @@ inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
   nnoremap <space> :
 
   autocmd BufNewFile,BufRead *.rs set filetype=rust
-  let g:syntastic_rust_clippy_post_args = ['--release', '--', '-Dclippy', '-Wclippy_pedantic']
+  "let g:syntastic_rust_clippy_post_args = ['--release', '--', '-Dclippy', '-Wclippy_pedantic']
 
   "autocmd BufNewFile,BufRead *.vue set filetype=html
 
