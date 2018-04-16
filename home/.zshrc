@@ -17,9 +17,9 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zshrc.local" ]]; then
 fi
 
 # https://bugs.launchpad.net/byobu/+bug/1382598
-if [[ "$COLORTERM" == "xfce4-terminal" ]] || [[ "$COLORTERM" == "gnome-terminal" ]] || [[ ${$(</proc/$PPID/cmdline):t} == gnome-terminal* ]]; then
-  export TERM="xterm-256color"
-fi
+# if [[ "$COLORTERM" == "gnome-terminal" ]] || [[ ${$(</proc/$PPID/cmdline):t} == gnome-terminal* ]]; then
+#   export TERM="xterm-256color"
+# fi
 
 # Search backwards and forwards with a pattern
 bindkey -M vicmd '/' history-incremental-pattern-search-backward

@@ -10,6 +10,7 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'w0rp/ale'
+Plug 'tssm/fairyfloss.vim'
 " Plug 'scrooloose/syntastic'
 " Plug 'gmarik/vundle'
 " Plug 'godlygeek/tabular'
@@ -30,7 +31,6 @@ Plug 'w0rp/ale'
 " Plug 'scrooloose/nerdcommenter'
 " Plug 'ShowMarks'
 " Plug 'kien/ctrlp.vim'
-" Plug 'repeat.vim'
 Plug 'bling/vim-airline'
 Plug 'rust-lang/rust.vim'
 Plug 'junegunn/vim-emoji'
@@ -57,10 +57,7 @@ Plug 'mattn/emmet-vim', { 'for': 'html' }
 " Make tab handle all completions
 Plug 'ervandew/supertab'
 
-" Syntastic: Code linting errors
-" Plug 'scrooloose/syntastic' ", { 'for': ['php', 'python', 'javascript', 'css', 'vue'] }
 Plug 'posva/vim-vue'
-" Plug 'sekel/vim-vue-syntastic'
 
 " Pairs of handy bracket mappings
 Plug 'tpope/vim-unimpaired'
@@ -189,15 +186,6 @@ let g:showmarks_enable=0
 
 set t_Co=256
 
-if has('python')
-
-	Plug 'UltiSnips'
-	let g:UltiSnipsSnippetDirectories=["ultisnips"]
-	let g:UltiSnipsExpandTrigger="<tab>"
-	let g:UltiSnipsJumpForwardTrigger="<tab>"
-	let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-
-endif
 function! WrapForTmux(s)
   if !exists('$TMUX')
     return a:s
@@ -227,7 +215,7 @@ inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 
   scriptencoding utf-8
 
-  colorscheme elflord
+  colorscheme fairyfloss
 
   " These two enable syntax highlighting
   set nocompatible          " We're running Vim, not Vi!
@@ -516,8 +504,26 @@ inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
   nnoremap <space> :
 
   autocmd BufNewFile,BufRead *.rs set filetype=rust
-  " let g:syntastic_rust_clippy_post_args = ['--release', '--', '-Dclippy', '-Wclippy_pedantic']
+  "let g:syntastic_rust_clippy_post_args = ['--release', '--', '-Dclippy', '-Wclippy_pedantic']
 
   "autocmd BufNewFile,BufRead *.vue set filetype=html
 
   let g:localvimrc_whitelist = '/home/philtweir/Work/Flax_and_Teal/Sync/Clients/Ogg/Project/orp-frontend'
+
+  set t_ZH=[3m
+  set t_ZR=[23m
+
+  set termguicolors
+
+  if exists('$TMUX')
+
+    " Colors in tmux
+    "
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
+  endif
+
+  highlight Statement cterm=italic
+  highlight Comment cterm=italic

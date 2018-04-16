@@ -1,1 +1,3 @@
 .local/share
+.local/bin
+.fonts/Fira
