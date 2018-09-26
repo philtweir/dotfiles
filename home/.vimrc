@@ -9,6 +9,7 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'christianrondeau/vim-base64'
 Plug 'w0rp/ale'
 Plug 'tssm/fairyfloss.vim'
 " Plug 'scrooloose/syntastic'
@@ -41,7 +42,6 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'fxn/vim-monochrome'
 Plug 'chriskempson/base16-vim'
 Plug 'NLKNguyen/papercolor-theme'
-Plug 'beanworks/vim-phpfmt'
 
 Plug 'embear/vim-localvimrc'
 " Syntax
@@ -467,8 +467,6 @@ inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
   set undodir=~/.vim/undodir
 
   nmap <leader>p :CtrlPBufTagAll<cr>
-  nmap <leader>T :!phpunit<cr>
-  nmap <leader>t :!phpunit %<cr>
 
   set visualbell
 
@@ -494,8 +492,10 @@ inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
   " let g:syntastic_vue_checkers = ['eslint']
   " let g:ale_linters = {'rust': ['rls']}
   let g:ale_completion_enabled = 1
-
-  let g:phpfmt_standard = 'PSR2'
+  let g:ale_lint_delay = 500
+  let g:ale_lint_on_text_changed = 'normal'
+  " let g:ale_php_phpcs_standard = '$HOME/.config/composer/vendor/pragmarx/laravelcs/Standards/Laravel/ --exclude=Laravel.Tabs.DisallowWhitespaceIndent'
+  "  let g:ale_linters = {'php': ['php', 'phpcs']}
 
   set expandtab
   set shiftwidth=2
@@ -514,6 +514,8 @@ inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
   set t_ZR=[23m
 
   set termguicolors
+
+  set diffopt+=vertical
 
   if exists('$TMUX')
 

@@ -52,3 +52,9 @@ fi
 
 # Include a local bashrc
 [ -f $HOME/.bashrc.local ] && source $HOME/.bashrc.local
+
+###-tns-completion-start-###
+if [ -f /home/philtweir/.tnsrc ]; then 
+    source /home/philtweir/.tnsrc 
+fi
+###-tns-completion-end-###

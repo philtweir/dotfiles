@@ -36,6 +36,12 @@ function G() {
   cd $(grt)
 }
 
-export PATH="${PATH}:${HOME}/.local/bin"
+export PATH="${PATH}:${HOME}/.local/bin:$HOME/.config/composer/vendor/bin"
 export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${HOME}/.local/lib"
 export EDITOR="vi"
+
+###-tns-completion-start-###
+if [ -f /home/philtweir/.tnsrc ]; then 
+    source /home/philtweir/.tnsrc 
+fi
+###-tns-completion-end-###
