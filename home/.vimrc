@@ -9,6 +9,11 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
+let g:vimspector_enable_mappings = 'HUMAN'
+
+Plug 'sagi-z/vimspectorpy'
+Plug 'puremourning/vimspector'
+Plug 'voldikss/vim-translator'
 Plug 'christianrondeau/vim-base64'
 Plug 'w0rp/ale'
 Plug 'tssm/fairyfloss.vim'
@@ -321,6 +326,7 @@ inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
     au BufRead,BufNewFile *etc/nginx/* set ft=nginx 
     " treat rackup files like ruby
     au BufRead,BufNewFile *.ru set ft=ruby
+    au BufRead,BufNewFile *.pyga set ft=python
     au BufRead,BufNewFile Gemfile set ft=ruby
     autocmd BufEnter *.haml setlocal cursorcolumn
     au BufRead,BufNewFile Gemfile set ft=ruby                                   
@@ -495,13 +501,22 @@ inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
   let g:ale_lint_delay = 500
   let g:ale_lint_on_text_changed = 'normal'
   " let g:ale_php_phpcs_standard = '$HOME/.config/composer/vendor/pragmarx/laravelcs/Standards/Laravel/ --exclude=Laravel.Tabs.DisallowWhitespaceIndent'
-  "  let g:ale_linters = {'php': ['php', 'phpcs']}
+  let g:ale_linters = {'python': ['pylint', 'mypy', 'pylsp']}
+  let g:ale_python_auto_poetry = 1
+  let g:ale_python_mypy_auto_poetry = 1
+  let g:ale_python_pylsp_auto_poetry = 1
+
+  nnoremap <buffer> <C-]> :ALEGoToDefinition<CR>
+  nnoremap <buffer> <C-^> :ALEFindReferences<CR>
+  " setlocal omnifunc=ale#completion#OmniFunc
 
   set expandtab
   set shiftwidth=2
 
   nnoremap : <space>
   nnoremap <space> :
+  nnoremap <Left> :tabprevious<CR>
+  nnoremap <Right> :tabnext<CR>
 
   autocmd BufNewFile,BufRead *.rs set filetype=rust
   "let g:syntastic_rust_clippy_post_args = ['--release', '--', '-Dclippy', '-Wclippy_pedantic']
@@ -529,3 +544,7 @@ inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 
   highlight Statement cterm=italic
   highlight Comment cterm=italic
+  let g:translator_target_lang='en'
+  let g:translator_source_lang='ga'
+  nmap <silent> <Leader>t <Plug>Translate
+  vmap <silent> <Leader>t <Plug>TranslateV

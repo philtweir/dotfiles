@@ -10,4 +10,4 @@ config_dir="$HOME/.local/share/mo-us-e"
 
 # vi: ft=sh
 
-export PATH="$HOME/.cargo/bin:$PATH"
+. "$HOME/.cargo/env"

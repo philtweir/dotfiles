@@ -58,3 +58,4 @@ if [ -f /home/philtweir/.tnsrc ]; then
     source /home/philtweir/.tnsrc 
 fi
 ###-tns-completion-end-###
+. "$HOME/.cargo/env"
