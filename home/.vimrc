@@ -10,7 +10,13 @@ endif
 call plug#begin('~/.vim/plugged')
 
 let g:vimspector_enable_mappings = 'HUMAN'
+let g:csv_nomap_cr = 1
+let g:csv_nomap_space = 1
 
+Plug 'philtweir/python-syntax-ga'
+Plug 'chrisbra/csv.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'powerman/vim-plugin-AnsiEsc'
 Plug 'sagi-z/vimspectorpy'
 Plug 'puremourning/vimspector'
 Plug 'voldikss/vim-translator'
@@ -205,6 +211,9 @@ endfunction
 let &t_SI .= WrapForTmux("\<Esc>[?2004h")
 let &t_EI .= WrapForTmux("\<Esc>[?2004l")
 
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
 function! XTermPasteBegin()
   set pastetoggle=<Esc>[201~
   set paste
@@ -316,6 +325,7 @@ inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
     " autoindent with two spaces, always expand tabs
     autocmd FileType ruby,eruby,yaml set autoindent shiftwidth=2 softtabstop=2 tabstop=2 expandtab
     autocmd FileType python set autoindent shiftwidth=4 softtabstop=4 expandtab
+    autocmd FileType python-ga set autoindent shiftwidth=4 softtabstop=4 expandtab
     autocmd FileType cpp set autoindent shiftwidth=4 softtabstop=4 expandtab
     autocmd FileType javascript,html,htmldjango,css set autoindent shiftwidth=2 softtabstop=2 expandtab
     autocmd FileType vim set autoindent tabstop=2 shiftwidth=2 softtabstop=2 expandtab
@@ -326,7 +336,7 @@ inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
     au BufRead,BufNewFile *etc/nginx/* set ft=nginx 
     " treat rackup files like ruby
     au BufRead,BufNewFile *.ru set ft=ruby
-    au BufRead,BufNewFile *.pyga set ft=python
+    au BufRead,BufNewFile *.pyga set ft=python-ga
     au BufRead,BufNewFile Gemfile set ft=ruby
     autocmd BufEnter *.haml setlocal cursorcolumn
     au BufRead,BufNewFile Gemfile set ft=ruby                                   
@@ -489,7 +499,7 @@ inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 " http://stackoverflow.com/questions/1265410/is-there-a-way-to-configure-vimdiff-to-ignore-all-whitespaces
   set diffopt+=iwhite
   set diffexpr=DiffW()
-
+  let g:python_highlight_all = 1
   " let g:syntastic_python_python_exec = '/usr/bin/python3'
   " let g:syntastic_python_pylint_exe = '/usr/bin/pylint'
   " let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
@@ -548,3 +558,7 @@ inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
   let g:translator_source_lang='ga'
   nmap <silent> <Leader>t <Plug>Translate
   vmap <silent> <Leader>t <Plug>TranslateV
+
+  if &diff
+      colorscheme evening
+  endif

@@ -59,3 +59,8 @@ if [ -f /home/philtweir/.tnsrc ]; then
 fi
 ###-tns-completion-end-###
 . "$HOME/.cargo/env"
+
+[[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
+eval "$(atuin init bash)"
+
+complete -C /home/philtweir/.local/bin/mc-2019 mc

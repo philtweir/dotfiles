@@ -36,7 +36,7 @@ function G() {
   cd $(grt)
 }
 
-export PATH="${PATH}:${HOME}/.local/bin:$HOME/.config/composer/vendor/bin"
+export PATH="${HOME}/.local/bin:${PATH}:$HOME/.config/composer/vendor/bin"
 export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${HOME}/.local/lib"
 export EDITOR="vi"
 
@@ -45,3 +45,14 @@ if [ -f /home/philtweir/.tnsrc ]; then
     source /home/philtweir/.tnsrc 
 fi
 ###-tns-completion-end-###
+
+PATH="/home/philtweir/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/home/philtweir/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/philtweir/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/philtweir/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/philtweir/perl5"; export PERL_MM_OPT;
+
+eval "$(atuin init zsh --disable-up-arrow)"
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /home/philtweir/.local/bin/mc-2019 mc

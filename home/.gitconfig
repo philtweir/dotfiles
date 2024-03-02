@@ -35,8 +35,11 @@
 [user]
 	email = phil.weir@flaxandteal.co.uk
 	name = Phil Weir
+	signingkey = 403570C496AA817FCE4BC873D19CB202F07855DF
 [mergetool "diffconflicts"]
 	cmd = diffconflicts vim $BASE $LOCAL $REMOTE $MERGED
 	trustExitCode = true
 [mergetool]
 	keepBackup = false
+[rerere]
+	enabled = true
