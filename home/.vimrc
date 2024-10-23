@@ -13,6 +13,8 @@ let g:vimspector_enable_mappings = 'HUMAN'
 let g:csv_nomap_cr = 1
 let g:csv_nomap_space = 1
 
+Plug 'tpope/vim-tbone'
+Plug 'jasonccox/vim-wayland-clipboard'
 Plug 'philtweir/python-syntax-ga'
 Plug 'chrisbra/csv.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -140,9 +142,6 @@ Plug 'benmills/vimux', { 'for': ['python', 'javascript'] }
 " Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 
 Plug 'FooSoft/vim-argwrap'
-
-" Take notes and keep todo lists in vim
-Plug 'vimwiki/vimwiki'
 
 " Find the class/method based on cursor position
 "Plug 'vim-scripts/pythonhelper'
@@ -511,7 +510,7 @@ inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
   let g:ale_lint_delay = 500
   let g:ale_lint_on_text_changed = 'normal'
   " let g:ale_php_phpcs_standard = '$HOME/.config/composer/vendor/pragmarx/laravelcs/Standards/Laravel/ --exclude=Laravel.Tabs.DisallowWhitespaceIndent'
-  let g:ale_linters = {'python': ['pylint', 'mypy', 'pylsp']}
+  let g:ale_linters = {'python': ['ruff', 'pylint', 'mypy', 'pylsp']}
   let g:ale_python_auto_poetry = 1
   let g:ale_python_mypy_auto_poetry = 1
   let g:ale_python_pylsp_auto_poetry = 1
@@ -527,6 +526,8 @@ inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
   nnoremap <space> :
   nnoremap <Left> :tabprevious<CR>
   nnoremap <Right> :tabnext<CR>
+  nnoremap <S-Left> :tabmove -1<CR>
+  nnoremap <S-Right> :tabmove +1<CR>
 
   autocmd BufNewFile,BufRead *.rs set filetype=rust
   "let g:syntastic_rust_clippy_post_args = ['--release', '--', '-Dclippy', '-Wclippy_pedantic']
