@@ -1,0 +1,7 @@
+global:
+  links:
+    .bashrc: ~/.bashrc
+    .tmux.conf: ~/.tmux.conf
+    .vim: ~/.vim
+    .vimrc: ~/.vimrc
+    .shellrc: ~/.shellrc
