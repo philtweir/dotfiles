@@ -17,7 +17,6 @@ Plug 'tpope/vim-tbone'
 Plug 'jasonccox/vim-wayland-clipboard'
 Plug 'philtweir/python-syntax-ga'
 Plug 'chrisbra/csv.vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'powerman/vim-plugin-AnsiEsc'
 Plug 'sagi-z/vimspectorpy'
 Plug 'puremourning/vimspector'
@@ -210,8 +209,6 @@ endfunction
 let &t_SI .= WrapForTmux("\<Esc>[?2004h")
 let &t_EI .= WrapForTmux("\<Esc>[?2004l")
 
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 function! XTermPasteBegin()
   set pastetoggle=<Esc>[201~
