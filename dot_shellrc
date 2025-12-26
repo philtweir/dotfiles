@@ -1,0 +1,120 @@
+config_dir="$HOME"
+
+# Source a file if it exists.
+function try_source {
+	[ -f "$1" ] && source "$1"
+}
+
+try_source "$config_dir/.git-prompt.sh"
+try_source "$HOME/.aliases"
+
+# Set a color in the terminal palette.
+# \param 1 The index in the pallete.
+# \param 2 is a hexadecimal RGB color code.
+function set_color {
+	if [ "$TERM" = "linux" ]; then
+		[ $1 -lt 16 ] && printf $'\e]P%X%s' $1 $2
+	else
+		echo -en "\e]4;$1;#$2\a"
+	fi
+}
+
+# Set terminal colors.
+set_color  0 000000 # black
+set_color  1 CC0000 # red
+set_color  2 009900 # green
+set_color  3 CC9900 # yellow
+set_color  4 0066FF # blue
+set_color  5 9933CC # magenta
+set_color  6 009999 # cyan
+set_color  7 CCCCCC # light grey
+set_color  8 333333 # dark grey
+set_color  9 FF3333 # bright red
+set_color 10 33FF33 # bright green
+set_color 11 FFFF33 # bright yellow
+set_color 12 3399CC # bright blue
+set_color 13 CC33FF # bright magenta
+set_color 14 00FFFF # bright cyan
+set_color 15 FFFFFF # white
+# Set colors for 256
+set_color 17 000033 # dark blue
+set_color 22 003300 # dark green
+set_color 52 330000 # dark green
+set_color 53 330033 # dark magenta
+
+# Set up dircolors.
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+fi
+
+# Enable viewing non-text files in less.
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+# Create a directory and change to it.
+function mkd {
+	if [ $# -gt 1 ]; then
+		echo "Usage: $0 [dir]" >&2
+		return 13
+	fi
+	if [ -z $1 ]; then
+		mkd "/tmp/$(date +%F-%H-%M-%S)"
+	else
+		mkdir -p "$1"
+		cd "$1"
+	fi
+}
+
+# Get the directory name of a path.
+# Behaves exactly like dirname with no options.
+function dname {
+	# Empty input means current directory.
+	local p=${1:-.}
+	# Strip trailing slash.
+	p="${p%/}"
+	# Remove last component.
+	dir="${p%/*}"
+
+	# If nothing is left, it's the root directory.
+	if [ -z "$dir" ]; then
+		echo '/'
+	# If nothing changed there was no slash, so the CWD is the directory.
+	elif [ "$dir" = "$p" ]; then
+		echo '.'
+	# Otherwise $dir holds the directory name.
+	else
+		echo "$dir"
+	fi
+}
+
+# Usage: has_ancestor PID NAME
+# Check wether the process with PID has an ancestor with NAME.
+function has_ancestor {
+	local pid=$1
+	local target=$2
+	while [ $pid -ne 0 ]; do
+		read -r ppid name < <(ps -o ppid= -o comm= -p "$pid")
+		if [ "$name" = "$target" ]; then
+			return 0
+		fi
+		pid=$ppid
+	done
+	return 1
+}
+
+if has_ancestor $$ sshd; then
+	export HAS_SSHD_ANCESTOR=1
+fi
+
+# Set up git PS1 configuration.
+GIT_PS1_SHOWDIRTYSTATE=1
+GIT_PS1_SHOWSTASHSTATE=1
+GIT_PS1_SHOWUNTRACKEDFILES=1
+GIT_PS1_SHOWUPSTREAM="auto verbose"
+
+export EDITOR=vim
+export PAGER=less
+export MANPAGER=vimpager
+
+try_source "$HOME/.shellrc.local"
+
+# vi: ft=sh
