@@ -13,3 +13,10 @@ config_dir="$HOME/.local/share/mo-us-e"
 . "$HOME/.cargo/env"
 
 . "$HOME/.atuin/bin/env"
+
+if [ -n "$BASH_VERSION" ]; then
+    # include .bashrc if it exists
+    if [ -f "$HOME/.bashrc" ]; then
+    . "$HOME/.bashrc"
+    fi
+fi
