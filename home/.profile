@@ -11,3 +11,5 @@ config_dir="$HOME/.local/share/mo-us-e"
 # vi: ft=sh
 
 . "$HOME/.cargo/env"
+
+. "$HOME/.atuin/bin/env"
