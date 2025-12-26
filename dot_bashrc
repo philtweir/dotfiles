@@ -14,30 +14,70 @@ HISTFILESIZE=2000
 
 
 
-PS1=''
-# If this is an xterm set the title to user@host:dir
+# Shortened path function (like zsh)
+__short_pwd() {
+    local p="${PWD/#$HOME/\~}"
+    [[ "$p" == "~" || "$p" == "/" ]] && echo "$p" && return
+
+    local base=$(basename "$p")
+    local dir=$(dirname "$p")
+
+    [[ "$dir" == "/" ]] && echo "/${base}" && return
+    [[ "$dir" == "~" ]] && echo "~/${base}" && return
+
+    local short_dir=$(echo "${dir}/" | sed 's:\([^/]\)[^/]*/:\1/:g')
+    short_dir="${short_dir%/}"
+
+    echo "${short_dir}/${base}"
+}
+
+# Git branch for prompt (blue "git", white ":", green/red branch)
+__git_branch_ps1() {
+    local branch=$(git symbolic-ref --short HEAD 2>/dev/null)
+    if [[ -n "$branch" ]]; then
+        # Attached HEAD - green branch
+        printf ' \e[34mgit\e[m:\e[32m%s\e[m' "$branch"
+    else
+        # Detached HEAD - red commit
+        local commit=$(git rev-parse --short HEAD 2>/dev/null)
+        [[ -n "$commit" ]] && printf ' \e[34mgit\e[m:\e[31m%s\e[m' "$commit"
+    fi
+}
+
+# Virtualenv for prompt (disable default, handle ourselves)
+VIRTUAL_ENV_DISABLE_PROMPT=1
+__venv_ps1() {
+    [[ -n "$VIRTUAL_ENV" ]] && echo "($(basename "$VIRTUAL_ENV")) "
+}
+
+# Vi mode
+set -o vi
+
+# Mode indication: cursor shape + prepend indicator
+# (bash prepends mode string to PS1, can't append like zsh)
+# Cursor: bar for insert, block for command
+# Prepend: colored ❯/❮ to mirror zsh style
+bind 'set show-mode-in-prompt on'
+bind 'set vi-ins-mode-string \1\e[5 q\e[31m\2❯\1\e[33m\2❯\1\e[32m\2❯\1\e[m\2 '
+bind 'set vi-cmd-mode-string \1\e[1 q\e[32m\2❮\1\e[33m\2❮\1\e[31m\2❮\1\e[m\2 '
+
+PS1=' '
+# xterm title
 case "$TERM" in
 	xterm*|rxvt*) PS1+='\[\e]0;\u@\h: \w\a\]' ;;
 	*) ;;
 esac
 
+# Prompt: (venv) hostname| ~/s/path git:branch ❯
+# (mode indicator ❯❯❯/❮❮❮ is prepended by readline)
+PS1+='\[\e[m\]$(__venv_ps1)'
+PS1+='\[\e[32m\]\h\[\e[m\]| '
+PS1+='\[\e[36m\]$(__short_pwd)'
+PS1+='$(__git_branch_ps1)'
 if [ $UID -eq 0 ]; then
-	PS1+='\[\e[31m\]'
+	PS1+='\[\e[31m\] #\[\e[m\] '
 else
-	PS1+='\[\e[32m\]'
-fi
-PS1+='\u'
-if [ -n "$HAS_SSHD_ANCESTOR" ]; then
-	PS1+='\[\e[1m\]'
-fi
-PS1+='@${HOSTNAME##${SUDO_USER-$USER}-}'
-PS1+='\[\e[m\]:'
-PS1+='\[\e[34m\]\w'
-PS1+='\[\e[33m\]$(__git_ps1 "(%s)")'
-if [ $UID -eq 0 ]; then
-	PS1+='\[\e[31m\]#\[\e[m\] '
-else
-	PS1+='\[\e[m\]$ '
+	PS1+=' \[\e[33m\]❯\[\e[m\] '
 fi
 
 
