@@ -1,0 +1,6 @@
+bundle
+plugged
+!bundle/vundle
+undodir
+.netrwhist
+.netrwhist~
