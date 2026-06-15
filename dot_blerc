@@ -1,0 +1,154 @@
+###############################################################################
+# from the README
+# https://github.com/akinomyoga/ble.sh?tab=readme-ov-file#22-disable-features
+###############################################################################
+# Disable syntax highlighting
+bleopt highlight_syntax=
+
+# Disable highlighting based on filenames
+bleopt highlight_filename=
+
+# Disable highlighting based on variable types
+bleopt highlight_variable=
+
+# Tip: you may instead specify the delay of auto-complete in millisecond
+bleopt complete_auto_delay=200
+
+# Disable ambiguous completion
+bleopt complete_ambiguous=
+
+# Disable menu-complete by TAB
+bleopt complete_menu_complete=
+
+# Disable menu filtering (Note: auto-complete is enabled by default in bash-4.0+)
+bleopt complete_menu_filter=
+
+# Disable EOF marker like "[ble: EOF]"
+bleopt prompt_eol_mark=''
+
+# Disable error exit marker like "[ble: exit %d]"
+bleopt exec_errexit_mark=
+
+# Disable exit marker like "[ble: exit]"
+bleopt exec_exit_mark=
+
+# Disable some other markers like "[ble: ...]"
+bleopt edit_marker=
+bleopt edit_marker_error=#
+
+# Disable vi mode indicator in status line
+bleopt prompt_status_line=
+
+###############################################################################
+# from the Wiki
+# https://github.com/akinomyoga/ble.sh/wiki/Q&A#completions
+# How to change the color of suggestions of auto-complete?
+###############################################################################
+
+# a more subtle color for auto-completion
+ble-face auto_complete='fg=240,underline,italic'
+
+ble-bind -m vi_imap -f 'C-c' discard-line
+ble-bind -m vi_nmap -f 'C-c' discard-line
+
+# Enable Ctrl+R for atuin in vi normal mode (overrides redo)
+ble-bind -m vi_nmap -x 'C-r' '__atuin_history --keymap-mode=vim-normal'
+
+# Add to ~/.blerc
+
+# Directory history tracking (since bash doesn't auto-push like zsh)
+_my_dir_history=()
+_my_dir_history_max=50
+
+function my/track-directory {
+  # Don't add duplicates at the front
+  [[ "$PWD" == "${_my_dir_history[0]}" ]] && return
+  # Remove any existing occurrence of this directory
+  local i new_history=()
+  for ((i=0; i<${#_my_dir_history[@]}; i++)); do
+    [[ "${_my_dir_history[i]}" != "$PWD" ]] && new_history+=("${_my_dir_history[i]}")
+  done
+  # Add current directory at the front
+  _my_dir_history=("$PWD" "${new_history[@]:0:$((_my_dir_history_max-1))}")
+}
+blehook POSTEXEC+=my/track-directory
+blehook ATTACH+=my/track-directory
+
+# Override cd completion to handle "-" specially
+function ble/cmdinfo/complete:cd {
+  # Check if we're completing a word that starts with -
+  local word=${comp_words[comp_cword]}
+  
+  if [[ $word == -* ]]; then
+    # Offer directory history as completions
+    local dir
+    for dir in "${_my_dir_history[@]}"; do
+      [[ $dir != "$PWD" ]] || continue
+      ble/complete/cand/yield word "$dir"
+    done
+    return 0
+  fi
+  
+  # Fall back to default cd completion for other cases
+  ble/cmdinfo/complete:cd/.impl cd
+}
+
+# Same for pushd
+function ble/cmdinfo/complete:pushd {
+  local word=${comp_words[comp_cword]}
+
+  if [[ $word == -* ]]; then
+    local dir
+    for dir in "${_my_dir_history[@]}"; do
+      [[ $dir != "$PWD" ]] || continue
+      ble/complete/cand/yield word "$dir"
+    done
+    return 0
+  fi
+
+  ble/cmdinfo/complete:cd/.impl pushd
+}
+
+###############################################################################
+# Prompt configuration - blesh-compatible
+###############################################################################
+
+# Blesh-compatible prompt command for git status
+function blerc/prompt-command {
+    local branch=$(git symbolic-ref --short HEAD 2>/dev/null)
+    if [[ -n "$branch" ]]; then
+        GIT_PS1_SEGMENT=$' \e[34mgit\e[m:\e[32m'"$branch"$'\e[m'
+    else
+        local commit=$(git rev-parse --short HEAD 2>/dev/null)
+        if [[ -n "$commit" ]]; then
+            GIT_PS1_SEGMENT=$' \e[34mgit\e[m:\e[31m'"$commit"$'\e[m'
+        else
+            GIT_PS1_SEGMENT=""
+        fi
+    fi
+}
+
+blehook PRECMD+=blerc/prompt-command
+
+# Override PS1 for blesh (no \[ \] markers needed)
+PS1='$(__vi_mode_indicator)'
+PS1+='\e[m$(__venv_ps1)'
+PS1+='\e[32m\h\e[m| '
+PS1+='\e[36m$(__short_pwd)\e[m'
+PS1+='${GIT_PS1_SEGMENT}'
+if [ $UID -eq 0 ]; then
+	PS1+=' \e[31m#\e[m '
+else
+	PS1+=' \e[33m❯\e[m '
+fi
+
+# Ensure readline's mode indicator is disabled
+builtin bind 'set show-mode-in-prompt off' 2>/dev/null
+
+# Force-accept: Alt+Enter always executes, even in multiline paste buffers
+ble-bind -m vi_imap -f 'M-RET' accept-line
+ble-bind -m vi_nmap -f 'M-RET' accept-line
+
+# Also make Ctrl+J always execute (ble.sh default for multiline submit)
+ble-bind -m vi_imap -f 'C-j' accept-line
+ble-bind -m vi_nmap -f 'C-j' accept-line
