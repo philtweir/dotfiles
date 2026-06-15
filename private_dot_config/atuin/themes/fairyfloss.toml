@@ -1,0 +1,12 @@
+[theme]
+name = "fairyfloss"
+parent = "autumn"
+
+[styles]
+Base = { foreground_color = "#079797", attributes = ["Dim", "RapidBlink"] }
+AlertError = "#ff857f"
+AlertWarn = "#e6c000"
+AlertInfo = "#716799"
+Guidance = "#167be2"
+Success = "#00ff00"
+Failure = "#00ff00"

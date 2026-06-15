@@ -1,0 +1,7 @@
+[theme]
+name = "my-theme"
+parent = "autumn"
+
+[colors]
+AlertInto = "green"
+Guidance = "#888844"
