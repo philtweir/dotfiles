@@ -1,44 +1,12 @@
-[diff]
-    tool = vimdiff
-
-[color]
-    ui = true
-
-[alias]
-    l     = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --author-date-order
-    lg    = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --author-date-order --all
-    stat  = status
-    st    = status
-    ff    = merge --ff-only
-    index = diff --cached
-
-[core]
-    excludesfile = ~/.gitignore
-    whitespace = space-before-tab
-	editor = vim
-
-[push]
-    default = upstream
-
-[merge]
-    conflictstyle = diff3
-	tool = tabbedmeld
-
-[mergetool "tabbedmeld"]
-    cmd = meld $LOCAL $BASE $REMOTE -o $MERGED --diff $BASE $LOCAL --diff $BASE $REMOTE
-
-[mergetool "fugitive"]
-	cmd = vim -f -c \"Gdiff\" \"$MERGED\"
-
-[include]
-    path = ~/.gitconfig.local
 [user]
 	email = phil.weir@flaxandteal.co.uk
 	name = Phil Weir
-[mergetool "diffconflicts"]
-	cmd = diffconflicts vim $BASE $LOCAL $REMOTE $MERGED
-	trustExitCode = true
-[mergetool]
-	keepBackup = false
-[safe]
-	directory = /home/philtweir/Code/deliantra-client/deliantra-client/deliantra-source/deliantra/Deliantra-Client
+[merge]
+    tool = meld
+[mergetool "meld"]
+    # Choose one of these two lines (not both!) explained below.
+    cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
+    cmd = meld "$LOCAL" "$BASE" "$REMOTE" --output "$MERGED"
+
+[url "git@github.com:"]
+	insteadOf = https://github.com/

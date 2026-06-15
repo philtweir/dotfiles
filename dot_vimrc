@@ -20,6 +20,7 @@ Plug 'voldikss/vim-translator'
 Plug 'christianrondeau/vim-base64'
 Plug 'w0rp/ale'
 Plug 'tssm/fairyfloss.vim'
+Plug 'jasonccox/vim-wayland-clipboard'
 " Plug 'scrooloose/syntastic'
 " Plug 'gmarik/vundle'
 " Plug 'godlygeek/tabular'
@@ -123,8 +124,6 @@ Plug 'vim-scripts/argtextobj.vim'
 
 " Fugitive: Git from within Vim
 Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
-
 Plug 'airblade/vim-gitgutter'
 
 " Run Python tests in tmux splits
